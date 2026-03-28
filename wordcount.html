@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Word Counter Tool</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f0f8ff;
+        padding: 20px;
+        color: #333;
+    }
+    h2 {
+        text-align: center;
+        color: #005f73;
+    }
+    .container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    textarea {
+        width: 100%;
+        height: 120px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid #94d2bd;
+        margin-bottom: 15px;
+    }
+    button {
+        width: 100%;
+        padding: 12px;
+        background: #0a9396;
+        color: white;
+        border: none;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #007f83;
+    }
+    .output-box {
+        margin-top: 15px;
+        background: #e9f5f5;
+        padding: 12px;
+        border-left: 5px solid #0a9396;
+        border-radius: 6px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Word Counter & Text Reduction Tool</h2>
+
+    <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+
+    <button onclick="calculateResults()">Calculate</button>
+
+    <div class="output-box" id="wordCountBox">Total Words: </div>
+    <div class="output-box" id="plusBox">Reduced to 1/4 + 10%: </div>
+    <div class="output-box" id="minusBox">Reduced to 1/4 - 10%: </div>
+</div>
+
+<script>
+function calculateResults() {
+    let text = document.getElementById("inputText").value.trim();
+    if (!text) {
+        document.getElementById("wordCountBox").innerHTML = "Total Words: 0";
+        document.getElementById("plusBox").innerHTML = "Reduced to 1/4 + 10%: 0";
+        document.getElementById("minusBox").innerHTML = "Reduced to 1/4 - 10%: 0";
+        return;
+    }
+  let words = text.split(/\s+/).length;
+    let quarter = words / 4;
+
+    let plus = Math.round(quarter * 1.10);  // +10%
+    let minus = Math.round(quarter * 0.90); // -10%
+
+    document.getElementById("wordCountBox").innerHTML = "Total Words: " + words;
+    document.getElementById("plusBox").innerHTML = "Reduced to 1/4 + 10%: " + plus;
+    document.getElementById("minusBox").innerHTML = "Reduced to 1/4 - 10%: " + minus;
+}
+</script>
+
+</body>
+</html>
